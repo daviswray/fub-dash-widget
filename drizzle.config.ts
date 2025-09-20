@@ -1,7 +1,11 @@
 import { defineConfig } from "drizzle-kit";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL, ensure the database is provisioned");
+// Only require DATABASE_URL when actually running drizzle commands
+// This allows the app to build and run with in-memory storage
+const databaseUrl = process.env.DATABASE_URL;
+
+if (!databaseUrl) {
+  console.warn("DATABASE_URL not set, drizzle operations will fail. Set DATABASE_URL for database operations.");
 }
 
 export default defineConfig({
@@ -9,6 +13,6 @@ export default defineConfig({
   schema: "./shared/schema.ts",
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.DATABASE_URL,
+    url: databaseUrl || "postgresql://localhost:5432/placeholder",
   },
 });
