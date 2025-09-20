@@ -43,6 +43,8 @@ function App() {
         document.body.style.padding = '0';
         document.body.style.backgroundColor = '#ffffff';
         document.body.style.overflow = 'auto';
+        document.body.style.minHeight = '200px'; // Ensure minimum visibility
+        document.body.style.minWidth = '250px';  // Ensure minimum width
         
         // Use FUB API if available, otherwise fallback to postMessage
         if ((window as any).FUB && (window as any).FUB.ready) {
