@@ -85,6 +85,13 @@
     width: 100%;
     height: 100%;
   }
+  
+  /* Disable animations in iframe to prevent jittering */
+  .iframe-mode * {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* Custom scrollbar */

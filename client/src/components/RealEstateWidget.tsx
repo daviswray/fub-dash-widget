@@ -56,7 +56,12 @@ export function RealEstateWidget() {
   return (
     <div className={`${isInIframe ? 'p-1' : 'p-3'} bg-white w-full ${isInIframe ? 'min-h-fit' : 'min-h-screen'}`} style={{
       minHeight: isInIframe ? '200px' : 'auto',
-      backgroundColor: '#ffffff'
+      backgroundColor: '#ffffff',
+      position: isInIframe ? 'relative' : 'static',
+      overflow: isInIframe ? 'hidden' : 'auto',
+      transform: isInIframe ? 'translateZ(0)' : 'none', // Force hardware acceleration
+      backfaceVisibility: isInIframe ? 'hidden' : 'visible', // Reduce flicker
+      perspective: isInIframe ? '1000px' : 'none' // Smooth rendering
     }}>
       {/* Minimal debug indicator for iframe */}
       {isInIframe && (
@@ -89,11 +94,16 @@ export function RealEstateWidget() {
                 <button
                   key={platform.name}
                   onClick={() => handlePlatformClick(platform.name, platform.url)}
-                  className={`flex flex-col items-center ${isInIframe ? 'p-3' : 'p-6'} border border-border rounded-lg hover:bg-muted hover:border-primary transition-all group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
+                  className={`flex flex-col items-center ${isInIframe ? 'p-3' : 'p-6'} border border-border rounded-lg hover:bg-muted hover:border-primary ${isInIframe ? '' : 'transition-all'} group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
                   data-testid={platform.testId}
+                  style={isInIframe ? {
+                    transition: 'none',
+                    transform: 'none',
+                    animation: 'none'
+                  } : {}}
                 >
-                  <div className={`${isInIframe ? 'w-10 h-10' : 'w-16 h-16'} ${platform.iconBg} rounded-lg flex items-center justify-center ${isInIframe ? 'mb-2' : 'mb-4'} group-hover:bg-primary/10 transition-colors`}>
-                    <Icon className={`${isInIframe ? 'h-5 w-5' : 'h-8 w-8'} ${platform.iconColor} group-hover:text-primary transition-colors`} />
+                  <div className={`${isInIframe ? 'w-10 h-10' : 'w-16 h-16'} ${platform.iconBg} rounded-lg flex items-center justify-center ${isInIframe ? 'mb-2' : 'mb-4'} group-hover:bg-primary/10 ${isInIframe ? '' : 'transition-colors'}`}>
+                    <Icon className={`${isInIframe ? 'h-5 w-5' : 'h-8 w-8'} ${platform.iconColor} group-hover:text-primary ${isInIframe ? '' : 'transition-colors'}`} />
                   </div>
                   <span className={`${isInIframe ? 'text-sm' : 'text-lg'} font-medium text-foreground mb-1`}>{platform.name}</span>
                   <span className={`${isInIframe ? 'text-xs' : 'text-sm'} text-muted-foreground text-center`}>{platform.description}</span>

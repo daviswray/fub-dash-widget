@@ -46,6 +46,10 @@ function App() {
         document.body.style.minHeight = '200px'; // Ensure minimum visibility
         document.body.style.minWidth = '250px';  // Ensure minimum width
         
+        // Add iframe-mode class to disable animations
+        document.documentElement.classList.add('iframe-mode');
+        document.body.classList.add('iframe-mode');
+        
         // Use FUB API if available, otherwise fallback to postMessage
         if ((window as any).FUB && (window as any).FUB.ready) {
           // Use official FUB API
@@ -67,19 +71,26 @@ function App() {
           console.log('✅ FUB Widget ready signals sent (fallback)');
         }
         
-        // Try to resize iframe from inside
-        setTimeout(() => {
-          try {
-            window.parent.postMessage({
-              type: 'resize-iframe',
-              width: Math.max(400, document.body.scrollWidth),
-              height: Math.max(300, document.body.scrollHeight)
-            }, '*');
-            console.log('📏 Resize message sent to parent');
-          } catch (e) {
-            console.log('Could not send resize message:', e);
+        // Send resize message only once to prevent jittering
+        let resizeSent = false;
+        const sendResize = () => {
+          if (!resizeSent) {
+            try {
+              window.parent.postMessage({
+                type: 'resize-iframe',
+                width: 350,  // Fixed width to prevent jittering
+                height: 280  // Fixed height to prevent jittering
+              }, '*');
+              console.log('📏 Resize message sent to parent (once)');
+              resizeSent = true;
+            } catch (e) {
+              console.log('Could not send resize message:', e);
+            }
           }
-        }, 1000);
+        };
+        
+        // Send resize after content is loaded
+        setTimeout(sendResize, 1000);
       } else {
         console.log('Running in standalone mode (not iframe)');
       }
