@@ -47,13 +47,20 @@ export function RealEstateWidget() {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  // Check if we're in an iframe
+  const isInIframe = window.self !== window.top;
+  
+  // Add debugging
+  console.log('RealEstateWidget rendering, isInIframe:', isInIframe);
+  
   return (
-    <div className="p-3 bg-background w-full">
-      <Card className="w-full max-w-xl mx-auto shadow-lg border-2">
+    <div className={`${isInIframe ? 'p-2' : 'p-3'} bg-background w-full min-h-screen`}>
+      <Card className={`w-full ${isInIframe ? 'max-w-none' : 'max-w-xl mx-auto'} shadow-lg border-2`}>
         <CardHeader className="text-center pb-4">
           <CardTitle className="text-xl font-semibold text-primary flex items-center justify-center gap-2">
             <ExternalLink className="h-5 w-5" />
             Real Estate Platform Access
+            {isInIframe && <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">FUB Mode</span>}
           </CardTitle>
           <p className="text-sm text-muted-foreground">Quick access to your essential real estate tools</p>
         </CardHeader>

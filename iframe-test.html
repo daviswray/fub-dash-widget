@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUB Iframe Test</title>
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+        .iframe-container { 
+            border: 2px solid #ccc; 
+            margin: 20px 0; 
+            background: #f5f5f5;
+        }
+        iframe { 
+            width: 100%; 
+            height: 500px; 
+            border: none; 
+            display: block;
+        }
+        h3 { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>FUB Dashboard Widget - Iframe Test</h1>
+    
+    <h3>Standard View:</h3>
+    <div class="iframe-container">
+        <iframe src="https://fub-dash-7677cad1c3a4.herokuapp.com/" 
+                title="FUB Dashboard Widget"></iframe>
+    </div>
+    
+    <h3>With FUB Context:</h3>
+    <div class="iframe-container">
+        <iframe src="https://fub-dash-7677cad1c3a4.herokuapp.com/?context=eyJleGFtcGxlIjp0cnVlLCJkZWJ1Z1N0YXRlIjoid29ya2luZyIsImNvbnRleHQiOiJwZXJzb24iLCJhY2NvdW50Ijp7ImlkIjoxMjM0NTY3ODksImRvbWFpbiI6ImV4YW1wbGUiLCJvd25lciI6eyJuYW1lIjoiVG9tIE1pbmNoIiwiZW1haWwiOiJ0b20ubWluY2hAZXhhbXBsZS5jb20ifX0sInBlcnNvbiI6eyJpZCI6MTIzLCJmaXJzdE5hbWUiOiJNZWxpc3NhIiwibGFzdE5hbWUiOiJIYXJ0bWFuIiwiZW1haWxzIjpbeyJ2YWx1ZSI6Im0uaGFydG1hbkBleGFtcGxlLmNvbSIsInR5cGUiOiJob21lIiwic3RhdHVzIjoiTm90IFZhbGlkYXRlZCIsImlzUHJpbWFyeSI6MX1dLCJwaG9uZXMiOlt7InZhbHVlIjoiKDg4OCkgNTU1LTEyMzQiLCJub3JtYWxpemVkIjoiOD" 
+                title="FUB Dashboard Widget with Context"></iframe>
+    </div>
+
+    <script>
+        // Listen for messages from iframes
+        window.addEventListener('message', function(event) {
+            console.log('Received message from iframe:', event.data);
+        });
+    </script>
+</body>
+</html>
