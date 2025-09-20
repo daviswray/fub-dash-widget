@@ -43,8 +43,8 @@ function App() {
         document.body.style.padding = '0';
         document.body.style.backgroundColor = '#ffffff';
         document.body.style.overflow = 'auto';
-        document.body.style.minHeight = '200px'; // Ensure minimum visibility
-        document.body.style.minWidth = '250px';  // Ensure minimum width
+        document.body.style.minHeight = '500px'; // Much larger height like other FUB widgets
+        document.body.style.minWidth = '400px';  // Wider for better layout
         
         // Add iframe-mode class to disable animations
         document.documentElement.classList.add('iframe-mode');
@@ -71,26 +71,8 @@ function App() {
           console.log('✅ FUB Widget ready signals sent (fallback)');
         }
         
-        // Send resize message only once to prevent jittering
-        let resizeSent = false;
-        const sendResize = () => {
-          if (!resizeSent) {
-            try {
-              window.parent.postMessage({
-                type: 'resize-iframe',
-                width: 350,  // Fixed width to prevent jittering
-                height: 280  // Fixed height to prevent jittering
-              }, '*');
-              console.log('📏 Resize message sent to parent (once)');
-              resizeSent = true;
-            } catch (e) {
-              console.log('Could not send resize message:', e);
-            }
-          }
-        };
-        
-        // Send resize after content is loaded
-        setTimeout(sendResize, 1000);
+        // Let FUB handle iframe resizing automatically
+        console.log('📏 Letting FUB handle iframe sizing automatically');
       } else {
         console.log('Running in standalone mode (not iframe)');
       }

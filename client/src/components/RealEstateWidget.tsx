@@ -54,8 +54,8 @@ export function RealEstateWidget() {
   console.log('RealEstateWidget rendering, isInIframe:', isInIframe);
   
   return (
-    <div className={`${isInIframe ? 'p-1' : 'p-3'} bg-white w-full ${isInIframe ? 'min-h-fit' : 'min-h-screen'}`} style={{
-      minHeight: isInIframe ? '200px' : 'auto',
+    <div className={`${isInIframe ? 'p-4' : 'p-3'} bg-white w-full ${isInIframe ? 'min-h-full' : 'min-h-screen'}`} style={{
+      minHeight: isInIframe ? '500px' : 'auto',
       backgroundColor: '#ffffff',
       position: isInIframe ? 'relative' : 'static',
       overflow: isInIframe ? 'hidden' : 'auto',
@@ -86,15 +86,15 @@ export function RealEstateWidget() {
           </CardTitle>
           <p className="text-sm text-muted-foreground">Quick access to your essential real estate tools</p>
         </CardHeader>
-        <CardContent className={isInIframe ? 'p-3' : 'p-6'}>
-          <div className={`grid ${isInIframe ? 'grid-cols-2 gap-2' : 'grid-cols-1 sm:grid-cols-2 gap-4'}`}>
+        <CardContent className={isInIframe ? 'p-4' : 'p-6'}>
+          <div className={`grid ${isInIframe ? 'grid-cols-2 gap-4' : 'grid-cols-1 sm:grid-cols-2 gap-4'}`}>
             {platforms.map((platform) => {
               const Icon = platform.icon;
               return (
                 <button
                   key={platform.name}
                   onClick={() => handlePlatformClick(platform.name, platform.url)}
-                  className={`flex flex-col items-center ${isInIframe ? 'p-3' : 'p-6'} border border-border rounded-lg hover:bg-muted hover:border-primary ${isInIframe ? '' : 'transition-all'} group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
+                  className={`flex flex-col items-center ${isInIframe ? 'p-4' : 'p-6'} border border-border rounded-lg hover:bg-muted hover:border-primary ${isInIframe ? '' : 'transition-all'} group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
                   data-testid={platform.testId}
                   style={isInIframe ? {
                     transition: 'none',
@@ -102,8 +102,8 @@ export function RealEstateWidget() {
                     animation: 'none'
                   } : {}}
                 >
-                  <div className={`${isInIframe ? 'w-10 h-10' : 'w-16 h-16'} ${platform.iconBg} rounded-lg flex items-center justify-center ${isInIframe ? 'mb-2' : 'mb-4'} group-hover:bg-primary/10 ${isInIframe ? '' : 'transition-colors'}`}>
-                    <Icon className={`${isInIframe ? 'h-5 w-5' : 'h-8 w-8'} ${platform.iconColor} group-hover:text-primary ${isInIframe ? '' : 'transition-colors'}`} />
+                  <div className={`${isInIframe ? 'w-12 h-12' : 'w-16 h-16'} ${platform.iconBg} rounded-lg flex items-center justify-center ${isInIframe ? 'mb-3' : 'mb-4'} group-hover:bg-primary/10 ${isInIframe ? '' : 'transition-colors'}`}>
+                    <Icon className={`${isInIframe ? 'h-6 w-6' : 'h-8 w-8'} ${platform.iconColor} group-hover:text-primary ${isInIframe ? '' : 'transition-colors'}`} />
                   </div>
                   <span className={`${isInIframe ? 'text-sm' : 'text-lg'} font-medium text-foreground mb-1`}>{platform.name}</span>
                   <span className={`${isInIframe ? 'text-xs' : 'text-sm'} text-muted-foreground text-center`}>{platform.description}</span>
