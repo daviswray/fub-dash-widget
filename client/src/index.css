@@ -9,17 +9,17 @@
   --card-foreground: hsl(210 6% 13%);
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(210 6% 13%);
-  --primary: hsl(208 69% 34%);
+  --primary: hsl(208 69% 34%); /* #2B5A87 - Professional blue */
   --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(210 17% 98%);
+  --secondary: hsl(210 17% 98%); /* #F8F9FA - Light grey */
   --secondary-foreground: hsl(210 6% 13%);
   --muted: hsl(210 17% 98%);
   --muted-foreground: hsl(210 4% 47%);
-  --accent: hsl(134 61% 41%);
+  --accent: hsl(134 61% 41%); /* #28A745 - Success green */
   --accent-foreground: hsl(0 0% 100%);
   --destructive: hsl(356 63% 55%);
   --destructive-foreground: hsl(0 0% 100%);
-  --border: hsl(210 18% 87%);
+  --border: hsl(210 18% 87%); /* #DEE2E6 - Light border */
   --input: hsl(210 18% 87%);
   --ring: hsl(208 69% 34%);
   --chart-1: hsl(208 69% 34%);
@@ -27,14 +27,6 @@
   --chart-3: hsl(42 93% 56%);
   --chart-4: hsl(147 78% 42%);
   --chart-5: hsl(341 75% 51%);
-  --sidebar: hsl(210 17% 98%);
-  --sidebar-foreground: hsl(210 6% 13%);
-  --sidebar-primary: hsl(208 69% 34%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(134 61% 41%);
-  --sidebar-accent-foreground: hsl(0 0% 100%);
-  --sidebar-border: hsl(210 18% 87%);
-  --sidebar-ring: hsl(208 69% 34%);
   --font-sans: 'Open Sans', 'Roboto', system-ui, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
@@ -78,6 +70,21 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Optimize for iframe embedding */
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Ensure proper layout in iframe */
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 }
 
