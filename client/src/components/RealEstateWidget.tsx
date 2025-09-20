@@ -54,7 +54,27 @@ export function RealEstateWidget() {
   console.log('RealEstateWidget rendering, isInIframe:', isInIframe);
   
   return (
-    <div className={`${isInIframe ? 'p-2' : 'p-3'} bg-background w-full min-h-screen`}>
+    <div className={`${isInIframe ? 'p-2' : 'p-3'} bg-white w-full min-h-screen`} style={{
+      minWidth: isInIframe ? '300px' : 'auto',
+      minHeight: isInIframe ? '400px' : 'auto',
+      backgroundColor: '#ffffff',
+      border: isInIframe ? '2px solid blue' : 'none' // Debug border
+    }}>
+      {/* Emergency fallback content */}
+      {isInIframe && (
+        <div style={{ 
+          position: 'absolute', 
+          top: '10px', 
+          left: '10px', 
+          background: 'yellow', 
+          padding: '5px', 
+          fontSize: '12px',
+          zIndex: 9999 
+        }}>
+          IFRAME DEBUG: Widget Loading...
+        </div>
+      )}
+      
       <Card className={`w-full ${isInIframe ? 'max-w-none' : 'max-w-xl mx-auto'} shadow-lg border-2`}>
         <CardHeader className="text-center pb-4">
           <CardTitle className="text-xl font-semibold text-primary flex items-center justify-center gap-2">
