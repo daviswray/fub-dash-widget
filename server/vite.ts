@@ -17,7 +17,6 @@ export function log(message: string, source = "express") {
 export async function setupVite(app: Express, server: Server) {
   // Dynamically import Vite dependencies only in development
   const { createServer: createViteServer, createLogger } = await import("vite");
-  const viteConfig = await import("../vite.config.js");
   const { nanoid } = await import("nanoid");
   
   const viteLogger = createLogger();
@@ -28,9 +27,9 @@ export async function setupVite(app: Express, server: Server) {
     allowedHosts: true as const,
   };
 
+  // Use the vite config file directly instead of importing it
   const vite = await createViteServer({
-    ...viteConfig.default,
-    configFile: false,
+    configFile: "../vite.config.ts",
     customLogger: {
       ...viteLogger,
       error: (msg, options) => {
