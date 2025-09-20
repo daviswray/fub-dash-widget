@@ -26,21 +26,26 @@ function App() {
           }
         }
         
-        // Signal to parent iframe that we're ready
-        const readyMessage = {
-          type: 'widget-ready',
-          source: 'fub-dash-widget',
-          timestamp: Date.now()
-        };
-        
-        // Send ready signal to parent window
-        window.parent.postMessage(readyMessage, '*');
-        
-        // Also try common FUB ready signals
-        window.parent.postMessage('widget-loaded', '*');
-        window.parent.postMessage({ status: 'ready' }, '*');
-        
-        console.log('FUB Widget ready signals sent');
+        // Use FUB API if available, otherwise fallback to postMessage
+        if ((window as any).FUB && (window as any).FUB.ready) {
+          // Use official FUB API
+          (window as any).FUB.ready();
+          console.log('FUB API ready signal sent');
+        } else {
+          // Fallback to manual postMessage
+          const readyMessage = {
+            type: 'widget-ready',
+            source: 'fub-dash-widget',
+            timestamp: Date.now()
+          };
+          
+          // Send ready signal to parent window
+          window.parent.postMessage(readyMessage, '*');
+          window.parent.postMessage('widget-loaded', '*');
+          window.parent.postMessage({ status: 'ready' }, '*');
+          
+          console.log('FUB Widget ready signals sent (fallback)');
+        }
       }
     };
     
