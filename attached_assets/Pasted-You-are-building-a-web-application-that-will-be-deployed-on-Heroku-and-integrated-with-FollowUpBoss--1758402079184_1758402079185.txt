@@ -1,0 +1,36 @@
+You are building a web application that will be deployed on Heroku and integrated with FollowUpBoss CRM. Here are the key environmental constraints and patterns you must follow:
+
+**HEROKU DEPLOYMENT REQUIREMENTS:**
+- Single dyno architecture: one process serves both frontend and backend on the same port
+- Must use process.env.PORT (defaults to 5000) - no other ports are accessible
+- Include a Procfile with web process definition
+- Build process must generate production-ready static assets
+- All environment variables configured through Heroku config vars
+- Application must handle both development and production serving modes
+
+**FOLLOWUPBOSS ECOSYSTEM CONTEXT:**
+- This is a CRM-focused business environment dealing with real estate transactions
+- Applications typically handle agent management, deal tracking, and client interactions
+- Form submissions often create events, notes, or updates in external CRM systems
+- Data validation is critical for business processes (agent assignments, transaction types, etc.)
+- Common data entities: agents, deals, clients, transactions, events, notes
+- Integration patterns involve API calls to external services for data synchronization
+- User workflows typically involve multi-step forms with conditional logic
+
+**TECHNICAL ENVIRONMENT EXPECTATIONS:**
+- TypeScript for type safety in business logic
+- Modern React patterns with proper state management
+- Database operations require careful validation and error handling
+- API responses should follow consistent success/error patterns
+- Form handling needs robust validation with clear user feedback
+- UI should be professional and accessible for business users
+- Development workflow should support both local development and Heroku deployment
+
+**ARCHITECTURE PATTERNS:**
+- Shared validation schemas between frontend and backend
+- Modular API routing with proper error middleware
+- Static file serving in production with development hot-reload
+- Environment-aware configuration (dev vs prod)
+- Clean separation between client, server, and shared code
+
+Build your application following these patterns and constraints. The end result should be a production-ready application that can be deployed to Heroku and integrate seamlessly with FollowUpBoss workflows.
