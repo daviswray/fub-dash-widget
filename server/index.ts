@@ -6,6 +6,28 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Security headers for iframe embedding (FollowUpBoss integration)
+app.use((req, res, next) => {
+  // Allow embedding in iframes from any origin (needed for FollowUpBoss)
+  res.removeHeader('X-Frame-Options');
+  
+  // Set CSP to allow iframe embedding
+  res.setHeader('Content-Security-Policy', "frame-ancestors *;");
+  
+  // CORS headers for cross-origin requests
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+    return;
+  }
+  
+  next();
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
