@@ -38,11 +38,11 @@ function App() {
           }
         }
         
-        // Force minimum size for iframe content
-        document.body.style.minWidth = '300px';
-        document.body.style.minHeight = '400px';
+        // Optimize for iframe display
+        document.body.style.margin = '0';
+        document.body.style.padding = '0';
         document.body.style.backgroundColor = '#ffffff';
-        document.body.style.border = '2px solid red'; // Temporary debug border
+        document.body.style.overflow = 'auto';
         
         // Use FUB API if available, otherwise fallback to postMessage
         if ((window as any).FUB && (window as any).FUB.ready) {
