@@ -48,8 +48,8 @@ export function RealEstateWidget() {
   };
 
   return (
-    <div className="p-4 bg-background min-h-screen flex items-center justify-center">
-      <Card className="w-full max-w-2xl mx-auto shadow-lg border-2">
+    <div className="p-3 bg-background w-full">
+      <Card className="w-full max-w-xl mx-auto shadow-lg border-2">
         <CardHeader className="text-center pb-4">
           <CardTitle className="text-xl font-semibold text-primary flex items-center justify-center gap-2">
             <ExternalLink className="h-5 w-5" />
