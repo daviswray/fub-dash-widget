@@ -100,7 +100,7 @@ export function UpcomingTasks() {
     }
   };
 
-  const upcomingTasks = tasks?.filter((task: any) => !task.completed);
+  const upcomingTasks = (tasks as any)?.filter((task: any) => !task.completed);
 
   return (
     <Card>

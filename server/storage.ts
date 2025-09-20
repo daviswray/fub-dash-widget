@@ -260,7 +260,13 @@ export class MemStorage implements IStorage {
 
   async createActivity(insertActivity: InsertActivity): Promise<Activity> {
     const id = randomUUID();
-    const activity: Activity = { ...insertActivity, id, createdAt: new Date() };
+    const activity: Activity = { 
+      ...insertActivity, 
+      id, 
+      createdAt: new Date(),
+      agentId: insertActivity.agentId || null,
+      relatedId: insertActivity.relatedId || null
+    };
     this.activities.set(id, activity);
     return activity;
   }
@@ -277,7 +283,12 @@ export class MemStorage implements IStorage {
 
   async createTask(insertTask: InsertTask): Promise<Task> {
     const id = randomUUID();
-    const task: Task = { ...insertTask, id, createdAt: new Date() };
+    const task: Task = { 
+      ...insertTask, 
+      id, 
+      createdAt: new Date(),
+      completed: insertTask.completed || 0
+    };
     this.tasks.set(id, task);
     return task;
   }

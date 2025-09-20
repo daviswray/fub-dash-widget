@@ -24,7 +24,7 @@ export function StatsCards() {
   const statsConfig = [
     {
       title: "Active Transactions",
-      value: stats?.activeTransactions || 0,
+      value: (stats as any)?.activeTransactions || 0,
       icon: Handshake,
       iconBg: "bg-primary/10",
       iconColor: "text-primary",
@@ -33,7 +33,7 @@ export function StatsCards() {
     },
     {
       title: "Pending Forms",
-      value: stats?.pendingForms || 0,
+      value: (stats as any)?.pendingForms || 0,
       icon: ClipboardCheck,
       iconBg: "bg-accent/10",
       iconColor: "text-accent",
@@ -42,7 +42,7 @@ export function StatsCards() {
     },
     {
       title: "Team Members",
-      value: stats?.teamMembers || 0,
+      value: (stats as any)?.teamMembers || 0,
       icon: Users,
       iconBg: "bg-blue-100",
       iconColor: "text-blue-600",
@@ -51,7 +51,7 @@ export function StatsCards() {
     },
     {
       title: "Monthly Revenue",
-      value: stats?.monthlyRevenue || "$0",
+      value: (stats as any)?.monthlyRevenue || "$0",
       icon: DollarSign,
       iconBg: "bg-green-100",
       iconColor: "text-green-600",

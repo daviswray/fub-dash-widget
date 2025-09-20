@@ -149,7 +149,7 @@ export function TeamForms() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
-              {forms?.map((form: any) => {
+              {(forms as any)?.map((form: any) => {
                 const Icon = getFormIcon(form.type);
                 const iconColor = getFormIconColor(form.type);
                 const isOverdue = form.status === "Overdue";

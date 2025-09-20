@@ -63,7 +63,7 @@ export function TeamPerformance() {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {performance?.map((member: any, index: number) => (
+          {(performance as any)?.map((member: any, index: number) => (
             <div key={member.id} className="flex items-center justify-between" data-testid={`team-member-${member.id}`}>
               <div className="flex items-center space-x-3">
                 <Avatar className="w-8 h-8">

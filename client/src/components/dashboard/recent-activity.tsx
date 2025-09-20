@@ -81,7 +81,7 @@ export function RecentActivity() {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {activities?.slice(0, 3).map((activity: any) => {
+          {(activities as any)?.slice(0, 3).map((activity: any) => {
             const Icon = getActivityIcon(activity.type);
             const iconColor = getActivityIconColor(activity.type);
             const iconBg = getActivityIconBg(activity.type);
